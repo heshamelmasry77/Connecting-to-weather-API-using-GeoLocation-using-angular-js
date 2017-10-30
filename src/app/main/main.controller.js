@@ -6,7 +6,6 @@
   /** @ngInject */
   function MainController($scope, toastr, $http, $uibModal, MainService) {
     var vm = this;
-    vm.coords = {};
     //
     // vm.classAnimation = '';
     //
@@ -54,7 +53,11 @@
           // this.init = function() {
           //   this.enteredMaxOffer = vm.maxOffer;
           // };
-          this.okAction = function() {
+
+          var vm = this;
+          vm.coords = {};
+          console.log("hello "+vm.coords);
+          vm.okAction = function() {
             MainService.getUserLocation().then(function(data) {
               vm.coords = {
                 lat: data.coords.latitude,
@@ -65,12 +68,11 @@
               toastr.success('We got location!');
             }).catch(function(error) {
               toastr.error('Something went wrong :(');
-
               console.log(error);
             });
 
           };
-          this.cancelAction = function() {
+          vm.cancelAction = function() {
             console.log('Don\'t do action');
             $uibModalInstance.close();
             toastr.warning('You canceled getting location');
