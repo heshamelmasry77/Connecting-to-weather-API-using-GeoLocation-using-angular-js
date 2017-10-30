@@ -4,23 +4,14 @@
   angular.module('globalKinetic').controller('MainController', MainController);
 
   /** @ngInject */
-  function MainController($scope, toastr, $http, $uibModal, MainService) {
+  function MainController($uibModal, MainService) {
     var vm = this;
-    //
-    // vm.classAnimation = '';
-    //
-    // vm.showToastr = showToastr;
-    //
-    // function showToastr() {
-    //   toastr.info('Fork <a href="https://github.com/Swiip/generator-gulp-angular" target="_blank"><b>generator-gulp-angular</b></a>');
-    //   vm.classAnimation = '';
-    // }
+    vm.weatherData = {};
+    vm.coords = {};
     vm.init = init;
-    // vm.getUserLocation = getUserLocation;
     vm.test = test;
 
     function init() {
-      // vm.getUserLocation();
       vm.test();
     }
 
@@ -50,30 +41,39 @@
         templateUrl: 'app/main/modals/askPermissionModal.html',
         backdrop: 'static',
         controller: function($uibModalInstance, toastr) {
-          // this.init = function() {
-          //   this.enteredMaxOffer = vm.maxOffer;
-          // };
-
-          var vm = this;
-          vm.coords = {};
-          console.log("hello "+vm.coords);
-          vm.okAction = function() {
+          console.log('hello ' + vm.coords);
+          this.okAction = function() {
+            this.showLoader = {};
+            this.showLoader = true;
             MainService.getUserLocation().then(function(data) {
               vm.coords = {
                 lat: data.coords.latitude,
                 long: data.coords.longitude,
               };
-              console.log(vm.coords);
+              vm.apiKey = '53f9d8e4213222cf517d86dc406d67fc';
+              // console.log(vm.coords);
+
               $uibModalInstance.close();
               toastr.success('We got location!');
+              MainService.getWeatherByGeographicCoordinates(vm.coords.lat,
+                vm.coords.long, vm.apiKey).then(function(data) {
+                vm.weatherData = data;
+                console.log(vm.weatherData);
+
+              }).catch(function(error) {
+                toastr.error('Something went wrong with getting weather data');
+                console.log(error);
+              });
             }).catch(function(error) {
               toastr.error('Something went wrong :(');
               console.log(error);
+
             });
 
           };
-          vm.cancelAction = function() {
+          this.cancelAction = function() {
             console.log('Don\'t do action');
+            console.log(vm.weatherData);
             $uibModalInstance.close();
             toastr.warning('You canceled getting location');
           };

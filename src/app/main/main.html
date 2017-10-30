@@ -9,22 +9,23 @@
     <div class="panel panel-default">
       <div class="panel-heading"></div>
       <div class="panel-body">
-        <ul class="list-group">
-          <!--<li class="list-group-item" ng-repeat="item in main.userData">-->
-            <!--&lt;!&ndash;{{message.msg}} {{message.user.email}}&ndash;&gt;-->
-            <!--<p>Repo Name: {{item.full_name}}</p>-->
-            <!--<br/>-->
-            <!--<p>Repo Description: {{item.description }}-->
-            <!--<div ng-show="!item.description ">Null</div>-->
-            <!--</p>-->
-            <!--<br/>-->
-            <!--<p>Clone URL: </p> <a href="{{item.clone_url}}">{{item.clone_url}}</a>-->
-
-
-          <!--</li>-->
+        <ul class="list-group" ng-hide="main.weatherData | isEmpty">
+          <li class="list-group-item">
+            <p>Temperature : {{main.weatherData.temp}}</p>
+            <p>Humidity : {{main.weatherData.humidity}}</p>
+            <p>Pressure : {{main.weatherData.pressure}}</p>
+          </li>
         </ul>
-
+        <h4 class="text-center" ng-show="main.weatherData | isEmpty">
+          Please allow us to get your location in order to get the accurate weather.
+          <br/>
+          <br/>
+          <button class="btn-default" ng-click="main.test()">
+            Get Weather Details
+          </button>
+        </h4>
       </div>
+
 
     </div>
   </div>
