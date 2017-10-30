@@ -1,9 +1,9 @@
 (function() {
   'use strict';
 
-  angular
-    .module('globalKinetic')
-    .run(runBlock);
+  angular.module('globalKinetic')
+  .run(runBlock);
+
 
   /** @ngInject */
   function runBlock($log) {
