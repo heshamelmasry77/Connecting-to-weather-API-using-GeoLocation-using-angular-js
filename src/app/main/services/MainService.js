@@ -14,7 +14,6 @@
       geolocation.getLocation().then(function(data) {
           if (data) {
             deferred.resolve(data);
-            console.log(data);
           } else {
             deferred.reject('Empty data');
           }

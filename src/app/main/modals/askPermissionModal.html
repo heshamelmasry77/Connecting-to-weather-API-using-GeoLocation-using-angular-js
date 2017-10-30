@@ -1,18 +1,19 @@
 <div class="modal-content" ng-init="modalActions.init()">
-    <div class="modal-header bg-info">
-        <i class="ion-flame modal-icon"></i><span>Confirmation Alert</span>
-    </div>
-    <div class="modal-body text-center"><h2>Allow application location access ?</h2>
-      <div ng-show="modalActions.showLoader">
+  <div class="modal-header bg-info">
+    <i class="ion-flame modal-icon"></i><span>Confirmation Alert</span>
+  </div>
+  <div class="modal-body text-center"><h2>Allow application location access ?</h2>
+    <div ng-show="modalActions.showLoader">
 
-        <p>loading</p>
-        <p>we are getting the data please wait a second</p>
+      <p><span class="glyphicon glyphicon-refresh glyphicon-spin"></span>
+      </p>
+      <p>we are getting the weather Details please wait a second</p>
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-success" ng-click="modalActions.okAction()">Yes</button>
-        <button type="button" class="btn btn-danger" ng-click="modalActions.cancelAction()">Cancel</button>
+      <button type="button" class="btn btn-success" ng-click="modalActions.okAction()">Yes</button>
+      <button type="button" class="btn btn-danger" ng-click="modalActions.cancelAction()">Cancel</button>
 
-      </div>
     </div>
+  </div>
 </div>
 
