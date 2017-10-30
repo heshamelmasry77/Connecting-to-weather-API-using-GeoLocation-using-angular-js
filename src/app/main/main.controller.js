@@ -31,7 +31,7 @@
               vm.apiKey = '53f9d8e4213222cf517d86dc406d67fc';
 
               $uibModalInstance.close();
-              toastr.success('We got location!');
+              toastr.success('We got your location! here are the weather details for you ');
               MainService.getWeatherByGeographicCoordinates(vm.coords.lat,
                 vm.coords.long, vm.apiKey).then(function(data) {
                 vm.weatherData = data;
