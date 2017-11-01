@@ -1,4 +1,6 @@
-# global-kinetic-test
+# Connecting to weather API using GeoLocation using angular js
+Add topics
+
 It is a simple angular application to connect to the REST Weather API api and and lookup the weather conditions
 for the current location.
 
